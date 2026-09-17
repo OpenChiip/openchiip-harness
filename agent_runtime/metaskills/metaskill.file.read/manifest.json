@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.file.read",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "读取文件内容（支持行数与偏移）",
+  "inputs": {"path": "string", "max_lines": "int", "offset": "int"},
+  "outputs": {"content": "string", "total_lines": "int"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

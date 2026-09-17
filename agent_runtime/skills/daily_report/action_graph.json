@@ -1,0 +1,43 @@
+{
+  "description": "daily_report 技能的确定性执行 DAG：Layer 1 采集工位信息，Layer 3 LLM 汇总",
+  "steps": [
+    {
+      "id": "collect_time",
+      "action": "shell_command",
+      "layer": 1,
+      "description": "获取当前日期与星期",
+      "command": "date '+%Y-%m-%d %A %H:%M'",
+      "capture": "stdout",
+      "output_key": "time_info"
+    },
+    {
+      "id": "collect_workspace",
+      "action": "shell_command",
+      "layer": 1,
+      "description": "查看工位家目录文件清单",
+      "command": "ls -1 ~ | head -20",
+      "capture": "stdout",
+      "output_key": "workspace_info"
+    },
+    {
+      "id": "collect_identity",
+      "action": "shell_command",
+      "layer": 1,
+      "description": "获取当前员工身份",
+      "command": "whoami",
+      "capture": "stdout",
+      "output_key": "identity"
+    },
+    {
+      "id": "generate_report",
+      "action": "llm_generate",
+      "layer": 3,
+      "description": "汇总采集的信息，生成中文工作报告",
+      "depends_on": ["collect_time", "collect_workspace", "collect_identity"],
+      "system_prompt": "你是数字员工的工作报告撰写助手。基于采集到的客观信息，生成一份简洁、专业、结构化的中文工作报告。不要编造采集信息之外的具体业务数据。",
+      "user_prompt": "当前时间：${time_info}\n员工身份：${identity}\n工位文件清单：\n${workspace_info}\n\n用户指令：${user_instruction}\n\n请生成今日工作报告。",
+      "output_key": "report"
+    }
+  ],
+  "final_output": "report"
+}

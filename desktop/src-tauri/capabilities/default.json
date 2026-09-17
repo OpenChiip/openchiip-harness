@@ -1,0 +1,1 @@
+{"identifier":"default","description":"Default permissions for OpenChiip Agent","windows":["main"],"permissions":["core:default","shell:allow-open","shell:allow-execute"]}

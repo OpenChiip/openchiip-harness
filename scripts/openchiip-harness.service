@@ -1,0 +1,25 @@
+[Unit]
+Description=OpenChiip Harness
+Documentation=https://github.com/openchiip/harness
+After=network.target
+
+[Service]
+Type=simple
+User=openchiip
+Group=openchiip
+WorkingDirectory=/opt/openchiip-harness
+ExecStart=/opt/openchiip-harness/bin/openchiip-harness serve --host 0.0.0.0 --port 8900
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=openchiip-harness
+
+# 安全加固
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/openchiip-harness/data /home/openchiip/.openchiip-harness
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

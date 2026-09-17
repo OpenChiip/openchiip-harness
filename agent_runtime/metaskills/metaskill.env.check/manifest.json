@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.env.check",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "检查命令是否存在及版本",
+  "inputs": {"command": "string"},
+  "outputs": {"available": "bool", "path": "string", "version": "string"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

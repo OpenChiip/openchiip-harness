@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.file.list",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "列出目录内容",
+  "inputs": {"path": "string", "pattern": "string"},
+  "outputs": {"entries": "list", "total": "int"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

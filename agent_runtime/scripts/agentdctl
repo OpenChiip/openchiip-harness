@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+# agentdctl — 数字员工工位运行时 CLI（包装 daemon.py）
+#
+# 用法：
+#   agentdctl <agent_id> start      前台启动（生产环境由 systemd company-agent@ 管理）
+#   agentdctl <agent_id> stop       停止运行中的工位进程
+#   agentdctl <agent_id> status     查看 PID / Token 预算 / 技能数
+#   agentdctl <agent_id> logs       查看最近日志（stdout 重定向文件）
+#   agentdctl <agent_id> init       初始化运行时目录结构
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DAEMON="$SCRIPT_DIR/../daemon.py"
+PYTHON="${PYTHON:-python3}"
+
+usage() {
+    sed -n '2,10p' "$0" | sed 's/^# \{0,1\}//'
+    exit 1
+}
+
+[[ $# -ge 2 ]] || usage
+AGENT_ID="$1"
+ACTION="$2"
+shift 2
+
+case "$ACTION" in
+    start|run)
+        exec "$PYTHON" "$DAEMON" "$AGENT_ID" "$@"
+        ;;
+    stop)
+        exec "$PYTHON" "$DAEMON" "$AGENT_ID" --stop "$@"
+        ;;
+    status)
+        exec "$PYTHON" "$DAEMON" "$AGENT_ID" --status "$@"
+        ;;
+    init)
+        exec "$PYTHON" "$DAEMON" "$AGENT_ID" --init "$@"
+        ;;
+    logs)
+        # systemd 场景用 journalctl；前台场景回退读日志文件
+        if command -v journalctl >/dev/null 2>&1 && \
+           systemctl list-unit-files 2>/dev/null | grep -q 'company-agent@'; then
+            exec journalctl -u "company-agent@${AGENT_ID}" --no-pager -n "${1:-100}"
+        fi
+        LOG_FILE="${AGENT_RUNTIME_HOME:-$HOME/.openchiip-harness}/agent.log"
+        if [[ -f "$LOG_FILE" ]]; then
+            exec tail -n "${1:-100}" "$LOG_FILE"
+        fi
+        echo "未找到日志文件: $LOG_FILE" >&2
+        exit 1
+        ;;
+    *)
+        usage
+        ;;
+esac

@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.shell.exec",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "执行一条 shell 命令并返回 stdout/stderr/exit_code",
+  "inputs": {"command": "string", "cwd": "string", "timeout": "int"},
+  "outputs": {"stdout": "string", "stderr": "string", "exit_code": "int"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

@@ -1,0 +1,19 @@
+{
+  "name": "daily_report",
+  "version": "1.0.0",
+  "description": "生成今日工作报告：收集工位状态信息（Layer 1 确定性采集），由 LLM 汇总为中文工作报告（Layer 3）",
+  "author": "CHIIP",
+  "applicable_when": [
+    {
+      "intent": "daily_report",
+      "keywords": ["工作报告", "日报", "今日报告", "工作汇报", "工作总结", "生成报告", "今日进展"],
+      "context_keywords": ["今天", "今日", "日报", "汇报"]
+    }
+  ],
+  "token_budget": {
+    "normal": 600
+  },
+  "inputs": {
+    "user_instruction": "用户原始指令文本"
+  }
+}

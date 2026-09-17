@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.file.write",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "写入文件内容（覆盖）",
+  "inputs": {"path": "string", "content": "string"},
+  "outputs": {"path": "string", "bytes": "int"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

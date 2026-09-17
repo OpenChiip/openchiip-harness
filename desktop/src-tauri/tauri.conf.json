@@ -1,0 +1,70 @@
+{
+  "productName": "OpenChiip Harness",
+  "version": "0.0.30",
+  "identifier": "com.openchiip.harness",
+  "build": {
+    "frontendDist": "../../web/dist",
+    "beforeDevCommand": "",
+    "beforeBuildCommand": ""
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "OpenChiip Harness",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 800,
+        "minHeight": 600,
+        "resizable": true,
+        "fullscreen": false,
+        "center": true,
+        "url": "http://localhost:8900"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' http://localhost:* ws://localhost:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: http: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+    },
+    "trayIcon": {
+      "id": "main-tray",
+      "iconPath": "icons/icon.png",
+      "iconAsTemplate": true,
+      "tooltip": "OpenChiip Harness"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "publisher": "OpenChiip",
+    "targets": ["msi", "nsis"],
+    "icon": [
+      "icons/icon.png",
+      "icons/icon.ico",
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/64x64.png"
+    ],
+    "windows": {
+      "wix": {
+        "language": ["zh-CN", "en-US"]
+      },
+      "nsis": {
+        "installerIcon": "icons/icon.ico",
+        "languages": ["SimpChinese", "English"],
+        "installMode": "currentUser",
+        "displayLanguageSelector": true
+      }
+    },
+    "category": "DeveloperTool",
+    "externalBin": [
+      "binaries/openchiip-harness-backend"
+    ],
+    "shortDescription": "OpenChiip Harness",
+    "longDescription": "独立 Agent 框架，支持技能编排、多模型协同、知识库管理"
+  },
+  "plugins": {
+    "shell": {
+      "open": true
+    }
+  }
+}

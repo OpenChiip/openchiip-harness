@@ -1,0 +1,13 @@
+{
+  "name": "openchiip-harness-desktop",
+  "version": "0.0.30",
+  "private": true,
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "preview": "tauri preview"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}

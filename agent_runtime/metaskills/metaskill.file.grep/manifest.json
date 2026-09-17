@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.file.grep",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "在文件中搜索文本模式（正则）",
+  "inputs": {"pattern": "string", "path": "string"},
+  "outputs": {"matches": "list"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

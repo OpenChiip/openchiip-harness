@@ -1,0 +1,13 @@
+{
+  "metaskills": [
+    "metaskill.shell.exec",
+    "metaskill.file.read",
+    "metaskill.file.write",
+    "metaskill.file.list",
+    "metaskill.file.find",
+    "metaskill.file.grep",
+    "metaskill.env.check"
+  ],
+  "version": "1.0.0",
+  "description": "内置元技能清单（零 LLM 依赖）"
+}

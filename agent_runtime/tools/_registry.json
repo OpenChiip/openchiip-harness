@@ -1,0 +1,12 @@
+{
+  "tools": {
+    "shell": {
+      "name": "shell",
+      "script": "shell_mcp.py",
+      "description": "通用 shell 命令与文件操作工具",
+      "category": "builtin",
+      "enabled": true
+    }
+  },
+  "version": 1
+}

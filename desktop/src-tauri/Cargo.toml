@@ -1,0 +1,13 @@
+[package]
+name = "openchiip-harness-desktop"
+version = "0.0.30"
+edition = "2021"
+description = "OpenChiip Harness — 桌面应用"
+
+[dependencies]
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-shell = "2"
+serde_json = "1"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }

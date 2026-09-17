@@ -1,0 +1,42 @@
+{
+  "name": "openchiip-harness-web",
+  "private": true,
+  "version": "0.0.30",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@streamdown/code": "^1.1.1",
+    "@streamdown/math": "^1.0.2",
+    "@streamdown/mermaid": "^1.0.2",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tanstack/react-query": "^5.50.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "echarts": "^6.1.0",
+    "lucide-react": "^0.400.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.0",
+    "react-router-dom": "^6.26.0",
+    "remark-gfm": "^4.0.0",
+    "shiki": "^4.4.3",
+    "sonner": "^2.0.8",
+    "streamdown": "^2.5.0",
+    "tailwind-merge": "^2.3.0",
+    "zustand": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "metaskill.file.find",
+  "version": "1.0.0",
+  "type": "metaskill",
+  "description": "按文件名模式搜索文件",
+  "inputs": {"base_dir": "string", "name_pattern": "string"},
+  "outputs": {"files": "list"},
+  "zero_llm": true,
+  "impl": "impl.py"
+}

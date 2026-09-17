@@ -1,0 +1,31 @@
+# OpenChiip Harness — Docker Compose
+# 使用：docker compose up -d
+
+services:
+  harness:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: openchiip-harness
+    restart: unless-stopped
+    ports:
+      - "8900:8900"
+    volumes:
+      - agent-data:/app/data
+    environment:
+      # LLM 配置（通过环境变量覆盖）
+      - MODEL_SERVER=${MODEL_SERVER:-}
+      - MODEL_NAME=${MODEL_NAME:-ernie-5.1}
+      - FAST_MODEL_NAME=${FAST_MODEL_NAME:-ernie-4.5-turbo-128k}
+      - LLM_API_KEY=${LLM_API_KEY:-}
+      - AGENT_ID=${AGENT_ID:-standalone}
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8900/api/v1/status"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  agent-data:
+    driver: local
